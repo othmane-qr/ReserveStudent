@@ -10,7 +10,7 @@ namespace ReserveStudent.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Number { get; set; }
+        public string NameType { get; set; }
+        public int AccessNumber { get; set; }
     }
 }

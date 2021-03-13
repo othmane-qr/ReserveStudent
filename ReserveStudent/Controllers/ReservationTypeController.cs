@@ -51,8 +51,8 @@ namespace ReserveStudent.Controllers
                 var reservationType = new ReservationType
                 {
                     Id = reservation.Id,
-                    Name = reservation.Name,
-                    Number = reservation.Number
+                    NameType = reservation.NameType,
+                    AccessNumber = reservation.AccessNumber
                 };
 
                 var isSuccess = _repo.Create(reservationType);
@@ -80,8 +80,8 @@ namespace ReserveStudent.Controllers
             var model = new ReservationType
             {
                 Id = AbsenceType.Id,
-                Name = AbsenceType.Name,
-                Number = AbsenceType.Number
+                NameType = AbsenceType.NameType,
+                AccessNumber = AbsenceType.AccessNumber
             };
             return View(model);
         }
@@ -101,8 +101,8 @@ namespace ReserveStudent.Controllers
                 var ReservationType = new ReservationType
                 {
                     Id = model.Id,
-                    Name = model.Name,
-                    Number = model.Number
+                    NameType = model.NameType,
+                    AccessNumber = model.AccessNumber
                 };
                 var isSuccess = _repo.Update(ReservationType);
                 if (!isSuccess)

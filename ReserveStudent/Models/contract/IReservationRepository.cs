@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ReserveStudent.Models.contract
 {
-    interface IReservationRepository : IRepositoryBase<Reservation>
+    public interface IReservationRepository : IRepositoryBase<Reservation>
     {
     }
 }

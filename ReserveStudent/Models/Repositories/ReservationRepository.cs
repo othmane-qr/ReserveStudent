@@ -1,4 +1,5 @@
-﻿using ReserveStudent.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ReserveStudent.Data;
 using ReserveStudent.Models.contract;
 using System;
 using System.Collections.Generic;
@@ -28,13 +29,19 @@ namespace ReserveStudent.Models.Repositories
 
         public List<Reservation> GetAll()
         {
-            var reservation = _db.Reservations.ToList();
+            var reservation = _db.Reservations
+                .Include(x => x.ReservationType)
+                .Include(x => x.RequestingStudent)
+                .ToList();
             return reservation;
         }
 
         public Reservation GetById(int id)
         {
-            var reservation = _db.Reservations.Find(id);
+            var reservation = _db.Reservations
+                .Include(x => x.RequestingStudent)
+                .Include(x => x.ReservationType)
+                .FirstOrDefault(x=>x.Id==id);
             return reservation;
         }
 
