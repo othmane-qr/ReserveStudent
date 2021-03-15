@@ -177,7 +177,15 @@ namespace ReserveStudent.Controllers
         // GET: ReservationController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var reservation = _repos.GetById(id);
+            var isSuccuss = _repos.Delete(reservation);
+            if (!isSuccuss)
+            {
+
+                return View();
+            }
+            return RedirectToAction(nameof(StudentReservations));
+           
         }
 
         // POST: ReservationController/Delete/5
@@ -194,5 +202,15 @@ namespace ReserveStudent.Controllers
                 return View();
             }
         }
+
+        public ActionResult StudentReservations()
+        {
+            var user = _userManger.GetUserAsync(User).Result;
+
+            var Reservations = _repos.GetReservationsByStudent(user.Id);
+           
+            return View(Reservations);
+        }
     }
+
 }

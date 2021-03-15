@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ReserveStudent.Models.Reservation>
+
+@{
+    ViewData["Title"] = "StudentReservations";
+}
+
+<h1>StudentReservations</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestingStudentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReservationTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestingStudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+             
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id });
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -62,5 +62,12 @@ namespace ReserveStudent.Models.Repositories
             var reservation = _db.Reservations.Update(entity);
             return Save();
         }
+
+        public List<Reservation> GetReservationsByStudent(string id)
+        {
+            return GetAll()
+                .Where(q => q.RequestingStudentId == id).ToList();
+
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace ReserveStudent.Models.contract
 {
     public interface IReservationRepository : IRepositoryBase<Reservation>
     {
+        List<Reservation> GetReservationsByStudent(string id);
     }
 }
