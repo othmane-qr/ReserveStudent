@@ -17,6 +17,7 @@ namespace ReserveStudent.Controllers
         private readonly IReservationTypeRepository _ReservationTyperepo;
         private UserManager<IdentityUser> _userManger;
 
+
         public ReservationController(IReservationRepository repos , IReservationTypeRepository ReservationTyperepo ,UserManager<IdentityUser> userManager )
         {
             _repos = repos;
@@ -27,7 +28,7 @@ namespace ReserveStudent.Controllers
     // GET: ReservationController
     public ActionResult Index()
         {
-            var reservations = _repos.GetAll();
+            var reservations = _repos.GetAll().OrderBy(x => x.RequestingStudent.Count);
             return View(reservations);
            
         }
