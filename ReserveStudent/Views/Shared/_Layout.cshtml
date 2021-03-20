@@ -18,12 +18,25 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (User.IsInRole("Admin"))
+                        {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Adminstration" asp-action="ListRoles">List Roles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="reservation" asp-action="index">Resevation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="ReservationType" asp-action="index">reservation type </a>
+                    </li>
+                    
+                    }
+                        else
+                        { 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="reservation" asp-action="StudentReservations"> my Resevation</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

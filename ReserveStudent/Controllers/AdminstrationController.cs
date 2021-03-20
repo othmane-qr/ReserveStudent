@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ReserveStudent.Models;
 using System;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace ReserveStudent.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminstrationController : Controller
     {
+       
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<IdentityUser> userManager;
 

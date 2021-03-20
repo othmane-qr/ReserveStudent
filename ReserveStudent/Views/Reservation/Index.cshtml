@@ -5,10 +5,18 @@
 }
 
 <h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a class="invisible" asp-action="Create">Create New</a>
+    </p>
+}
+else
+{
+    <p>
+        <a  asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -34,32 +42,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestingStudent.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestingStudent.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationType.NameType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Review", "Review", new {  id=item.Id  }) |
-              
-             
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestingStudent.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestingStudent.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservationType.NameType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Review", "Review", new { id = item.Id }) |
+
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ReserveStudent.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ReserveStudent.Controllers
 {
@@ -24,15 +25,15 @@ namespace ReserveStudent.Controllers
             _ReservationTyperepo = ReservationTyperepo;
             _userManger = userManager;
         }
-
-    // GET: ReservationController
-    public ActionResult Index()
+        [Authorize(Roles = "Admin")]
+        // GET: ReservationController
+        public ActionResult Index()
         {
             var reservations = _repos.GetAll().OrderBy(x => x.RequestingStudent.Count);
             return View(reservations);
            
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: ReservationController/Details/5
         public ActionResult Review(int id)
         {
@@ -49,7 +50,7 @@ namespace ReserveStudent.Controllers
             };
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult ApprouveRequest(int id)
         {
             try
@@ -68,7 +69,7 @@ namespace ReserveStudent.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult RejectRequest(int id)
         {
             try
@@ -87,7 +88,7 @@ namespace ReserveStudent.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
         // GET: ReservationController/Create
         public ActionResult Create()
         {
@@ -106,7 +107,7 @@ namespace ReserveStudent.Controllers
 
            
         }
-
+        
         // POST: ReservationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -203,7 +204,7 @@ namespace ReserveStudent.Controllers
                 return View();
             }
         }
-
+        
         public ActionResult StudentReservations()
         {
             var user = _userManger.GetUserAsync(User).Result;
