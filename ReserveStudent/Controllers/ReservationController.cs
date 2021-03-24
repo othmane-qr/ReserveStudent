@@ -88,7 +88,7 @@ namespace ReserveStudent.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         // GET: ReservationController/Create
         public ActionResult Create()
         {
@@ -147,7 +147,7 @@ namespace ReserveStudent.Controllers
                     ModelState.AddModelError("", "Something went wrong in the submit action");
                     return View(model);
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(StudentReservations));
             }
             catch (Exception ex)
             {

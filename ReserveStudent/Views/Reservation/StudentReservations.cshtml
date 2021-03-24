@@ -4,44 +4,51 @@
     ViewData["Title"] = "StudentReservations";
 }
 
-<h1>StudentReservations</h1>
+<h1>Student Reservations</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-outline-primary" id="btncrt"> Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table  table-dark table-hover ">
+    <thead class="table-primary ">
         <tr>
-            <th>
+            <th class=" bg-primary d-none" >
                 @Html.DisplayNameFor(model => model.Id)
             </th>
-            <th>
+            <th class="bg-primary d-none">
                 @Html.DisplayNameFor(model => model.RequestingStudentId)
             </th>
-            <th>
+            <th class=" bg-primary d-none">
                 @Html.DisplayNameFor(model => model.ReservationTypeId)
             </th>
-            <th>
+            <th class=" bg-primary">
+                @Html.DisplayNameFor(model => model.ReservationType.NameType)
+            </th>
+            <th class="bg-primary">
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th>
+            <th class="bg-primary">
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-            <th></th>
+            <th class="bg-primary"></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td class="d-none">
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
-            <td>
+            <td class="d-none">
                 @Html.DisplayFor(modelItem => item.RequestingStudentId)
             </td>
-            <td>
+            <td class=" d-none">
                 @Html.DisplayFor(modelItem => item.ReservationTypeId)
             </td>
+           <td>
+            @Html.DisplayFor(modelItem => item.ReservationType.NameType)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
@@ -49,8 +56,8 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-             
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id });
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }

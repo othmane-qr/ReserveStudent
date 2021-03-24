@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">List des reservations</h1>
 @if (User.IsInRole("Admin"))
 {
     <p>
@@ -14,39 +14,40 @@
 else
 {
     <p>
-        <a  asp-action="Create">Create New</a>
+        <a  asp-action="Create" class="btn btn-outline-primary" >Create New</a>
     </p>
 }
-<table class="table">
-    <thead>
+ 
+<table  class="table  table-dark table-hover  " >
+    <thead class="table-primary ">
         <tr>
-            <th>
+            <th class="bg-primary d-none">
                 @Html.DisplayNameFor(model => model.Id)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RequestingStudent.FirstName)
+            <th class="bg-primary" >
+              First Name
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RequestingStudent.LastName)
+            <th class="bg-primary">
+              Last name
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
+            <th class="bg-primary">
+               Date
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservationType.NameType)
+            <th class="bg-primary">
+                type reservation
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
+            <th class="bg-primary">
+               Status
             </th>
-            <th></th>
+            <th class="bg-primary"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
+                <td class="d-none">
+                    @Html.DisplayFor(modelItem => item.Id) 
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.RequestingStudent.FirstName)
@@ -72,3 +73,4 @@ else
         }
     </tbody>
 </table>
+ 
