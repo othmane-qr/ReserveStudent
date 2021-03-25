@@ -14,6 +14,7 @@ namespace ReserveStudent.Models.contract
         bool Update(T entity);
         bool Delete(T entity);
         bool Save();
+        List<T> Search(String term);
 
     }
 }

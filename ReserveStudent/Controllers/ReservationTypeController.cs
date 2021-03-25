@@ -159,5 +159,10 @@ namespace ReserveStudent.Controllers
                 return View();
             }
         }
+        public ActionResult Search(string term)
+        {
+            var result = _repo.Search(term);
+            return View("Index", result);
+        }
     }
 }

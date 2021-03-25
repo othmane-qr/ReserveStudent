@@ -50,6 +50,13 @@ namespace ReserveStudent.Models.Repositories
             return changes > 0;
         }
 
+        public List<ReservationType> Search(string term)
+        {
+            var result = _db.ReservationTypes.Where(b => b.NameType.Contains(term) ||
+           b.AccessNumber.ToString().Contains(term)).ToList();
+            return result;
+        }
+
         public bool Update(ReservationType entity)
         {
             var reservationType = _db.ReservationTypes.Update(entity);

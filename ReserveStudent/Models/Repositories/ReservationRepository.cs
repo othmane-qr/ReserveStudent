@@ -69,5 +69,17 @@ namespace ReserveStudent.Models.Repositories
                 .Where(q => q.RequestingStudentId == id).ToList();
 
         }
+
+        public List<Reservation> Search(string term)
+        {
+            var result = _db.Reservations.Include(x => x.RequestingStudent)
+                                         .Include(x => x.ReservationType)
+                .Where(b => b.Date.ToString().Contains(term)
+                || b.RequestingStudent.LastName.Contains(term)
+                || b.RequestingStudent.FirstName.Contains(term)
+                || b.ReservationType.NameType.Contains(term)
+                || b.Status.ToString().Contains(term)).ToList();
+            return result;
+        }
     }
 }

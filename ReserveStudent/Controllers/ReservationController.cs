@@ -213,6 +213,11 @@ namespace ReserveStudent.Controllers
            
             return View(Reservations);
         }
+        public ActionResult Search(string term)
+        {
+            var result = _repos.Search(term);
+            return View("Index", result);
+        }
     }
 
 }
